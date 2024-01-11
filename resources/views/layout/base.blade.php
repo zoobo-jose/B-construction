@@ -18,11 +18,11 @@
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="{{asset('/js/lib/slick/slick.css')}}" rel="stylesheet">
-    <link href="{{asset('/js/lib/slick/slick-theme.css')}}" rel="stylesheet">
+    <link href="{{asset('/js/lib/slick/slick.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('/js/lib/slick/slick-theme.css')}}" rel="stylesheet" type="text/css">
 
     <!-- Template Stylesheet -->
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -241,11 +241,11 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('js/lib/easing/easing.min.js')}}"></script>
-    <script src="{{asset('js/lib/slick/slick.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/lib/easing/easing.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/lib/slick/slick.min.js')}}"></script>
 
     <!-- Template Javascript -->
-    <script src="{{asset('js/main.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>
