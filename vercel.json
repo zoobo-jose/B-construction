@@ -13,7 +13,7 @@
     "framework": null,
     "routes": [
        {
-            "src": "/(css|js|img)/(.*)|/lib/(.*)/(.*)",
+            "src": "/(css|js|img|lib)/(.*)",
             "dest": "public/$1/$2"
         },
         {
