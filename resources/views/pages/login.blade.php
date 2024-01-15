@@ -70,9 +70,9 @@
                             required autocomplete="current-password" >
                         </div>
                         <div class="col-md-12">
-                            <divhg class="custom-control custom-checkbox">
+                            <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="remember_me"  name="remember">
-                                <label class="custom-control-label" for="newaccount">Gardez-moi connecté</label>
+                                <label class="custom-control-label" for="remember_me">Gardez-moi connecté</label>
                             </div>
                         </div>
                         <div class="col-md-12">

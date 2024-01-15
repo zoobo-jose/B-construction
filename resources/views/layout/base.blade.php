@@ -63,19 +63,28 @@
                         <a href="{{ route('product-detail') }}"
                             class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('product-detail'))}}">Détail
                             du Produit</a>
-                        <a href="{{ route('cart') }}"
-                            class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('cart'))}}">Panier</a>
-                        <a href="{{ route('checkout') }}"
-                            class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('checkout'))}}">verifier</a>
-                        <a href="{{ route('my-account') }}"
+                        @if(Auth::check())
+                            <a href="{{ route('cart') }}"
+                                class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('cart'))}}">
+                                Panier
+                            </a>
+                            <a href="{{ route('checkout') }}"
+                            class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('checkout'))}}">
+                                verifier
+                            </a>
+                            <a href="{{ route('my-account') }}"
                             class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('my-account'))}}">Mon
-                            compte</a>
+                                compte
+                            </a>
+                        @endif
                         <div class="nav-item dropdown">
                             <a href="#"
                                 class="{{concat_chain_on_condition('nav-link dropdown-toggle ','active', route_Is(['login','wishlist','contact']))}}"
                                 data-toggle="dropdown">plus de pages</a>
                             <div class="dropdown-menu">
-                                <a href="{{ route('wishlist') }}" class="dropdown-item">liste de souhaits</a>
+                                @if(Auth::check())
+                                    <a href="{{ route('wishlist') }}" class="dropdown-item">liste de souhaits</a>
+                                @endif
                                 @if(!Auth::check())
                                     <a href="{{ route('login') }}" class="dropdown-item">connecter & enregistrer</a>
                                 @endif
