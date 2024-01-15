@@ -1,5 +1,9 @@
 @extends('layout/base',['title'=>'compte'])
 
+@php
+$user=Auth::user() 
+@endphp 
+
 @section('content')
 <!-- My Account Start -->
 <div class="my-account">
@@ -104,18 +108,24 @@
                     </div>
                     <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                         <h4>Détails du compte</h4>
-                        <div class="row">
+                        <form class="row">
+                        @csrf
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Prénom">
+                                <input class="form-control" type="text" placeholder="Prénom" 
+                                id="name" name="name" value="{{$user->name}}" required autofocus autocomplete="name">
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Nom de famille">
+                                <input class="form-control" type="text" placeholder="Nom de famille"
+                                id="surname" name="surname" value="{{$user->surname}}" required autofocus autocomplete="surname">
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Mobile">
+                                hum
+                                <input class="form-control" type="text" placeholder="Mobile"
+                                id="mobile" name="mobile" value="{{$user->mobile}}" required autofocus autocomplete="mobile">
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Email">
+                                <input class="form-control" type="text" placeholder="Email"
+                                id="email" name="email" value="{{$user->email}}" required autofocus autocomplete="email">
                             </div>
                             <div class="col-md-12">
                                 <input class="form-control" type="text" placeholder="Adresse">
@@ -124,7 +134,7 @@
                                 <button class="btn">Mettre le compte a jour</button>
                                 <br><br>
                             </div>
-                        </div>
+                        </form>
                         <h4>changer le mot de passe</h4>
                         <div class="row">
                             <div class="col-md-12">

@@ -30,7 +30,7 @@
                         <div class="col-md-6">
                             <label>Mobile No</label>
                             <input class="form-control" type="text" placeholder="Mobile No"
-                            id="mobile" name="mobile" value="{{old('mobile')}}" required autofocus autocomplete="mobile">
+                            id="mobile" name="mobile" value="{{old('mobile')}}" required  autocomplete="mobile">
                         </div>
                         <div class="col-md-6">
                             <label>Mot de passe</label>
