@@ -2223,7 +2223,12 @@ h2 {
     background: #ffffff;
     margin-bottom: 30px;
 }
-
+.login .login-form h4,
+.login .register-form h4{
+    margin-bottom:20px;
+    font-size:15px;
+    color:var(--color1);
+}
 
 /**********************************/
 /********** Footer CSS ************/

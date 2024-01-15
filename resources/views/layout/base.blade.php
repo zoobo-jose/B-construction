@@ -8,6 +8,7 @@
     <meta content="eCommerce HTML Template Free Download" name="keywords">
     <meta content="eCommerce HTML Template Free Download" name="description">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -75,7 +76,9 @@
                                 data-toggle="dropdown">plus de pages</a>
                             <div class="dropdown-menu">
                                 <a href="{{ route('wishlist') }}" class="dropdown-item">liste de souhaits</a>
-                                <a href="{{ route('login') }}" class="dropdown-item">connecter & enregistrer</a>
+                                @if(!Auth::check())
+                                    <a href="{{ route('login') }}" class="dropdown-item">connecter & enregistrer</a>
+                                @endif
                                 <a href="{{ route('contact') }}" class="dropdown-item">Nous contacter</a>
                             </div>
                         </div>
@@ -84,8 +87,21 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">compte utlisateur</a>
                             <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">se connecter</a>
-                                <a href="#" class="dropdown-item">s'enregistrer</a>
+                                
+                                @if(Auth::check())
+                                 <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                     <a  class="dropdown-item" :href="route('logout')"
+                                         onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                        se deconnecter
+                                    </a>
+                                </form>
+                                @endif
+                                @if(!Auth::check())
+                                    <a class="dropdown-item" href="{{route('login')}}">se connecter</a>
+                                    <a href="#" class="dropdown-item" href="{{route('login')}}">s'enregistrer</a>
+                                @endif
                             </div>
                         </div>
                     </div>
