@@ -23,7 +23,7 @@
                                 <tr>
                                     <td>
                                         <div class="img">
-                                            <a href="#"><img src="img/product-1.jpg" alt="Image"></a>
+                                            <a href="#"><img src="/img/article/img1.jpg" alt="Image"></a>
                                             <p>Nom du produit</p>
                                         </div>
                                     </td>
@@ -41,7 +41,7 @@
                                 <tr>
                                     <td>
                                         <div class="img">
-                                            <a href="#"><img src="img/product-2.jpg" alt="Image"></a>
+                                            <a href="#"><img src="/img/article/img2.jpg" alt="Image"></a>
                                             <p>Nom du produit</p>
                                         </div>
                                     </td>
@@ -59,7 +59,7 @@
                                 <tr>
                                     <td>
                                         <div class="img">
-                                            <a href="#"><img src="img/product-3.jpg" alt="Image"></a>
+                                            <a href="#"><img src="/img/article/img3.jpg" alt="Image"></a>
                                             <p>Nom du produit</p>
                                         </div>
                                     </td>
@@ -77,7 +77,7 @@
                                 <tr>
                                     <td>
                                         <div class="img">
-                                            <a href="#"><img src="img/product-4.jpg" alt="Image"></a>
+                                            <a href="#"><img src="/img/article/img4.jpg" alt="Image"></a>
                                             <p>Nom du produit</p>
                                         </div>
                                     </td>
@@ -95,7 +95,7 @@
                                 <tr>
                                     <td>
                                         <div class="img">
-                                            <a href="#"><img src="img/product-5.jpg" alt="Image"></a>
+                                            <a href="#"><img src="/img/article/img5.jpg" alt="Image"></a>
                                             <p>Nom du produit</p>
                                         </div>
                                     </td>

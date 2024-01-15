@@ -19,7 +19,8 @@
                         </div>
                         <div class="col-md-6">
                             <label>Nom de famille</label>
-                            <input class="form-control" type="text" placeholder="Nom de famille">
+                            <input class="form-control" type="text" placeholder="Nom de famille"
+                            id="surname" name="surname" value="{{old('surname')}}" required autofocus autocomplete="surname">
                         </div>
                         <div class="col-md-6">
                             <label>E-mail</label>
@@ -28,7 +29,8 @@
                         </div>
                         <div class="col-md-6">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="Mobile No">
+                            <input class="form-control" type="text" placeholder="Mobile No"
+                            id="mobile" name="mobile" value="{{old('mobile')}}" required autofocus autocomplete="mobile">
                         </div>
                         <div class="col-md-6">
                             <label>Mot de passe</label>
@@ -40,7 +42,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Saisir à nouveau le mot de passe</label>
-                            <input class="form-control" type="text" placeholder="Mot de passe"
+                            <input class="form-control" placeholder="Mot de passe"
                             id="password_confirmation" 
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" >
