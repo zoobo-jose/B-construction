@@ -108,8 +108,9 @@ $user=Auth::user()
                     </div>
                     <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                         <h4>Détails du compte</h4>
-                        <form class="row">
+                        <form class="row" method="post" action="{{ route('profile.update') }}">
                         @csrf
+                        @method('patch')
                             <div class="col-md-6">
                                 <input class="form-control" type="text" placeholder="Prénom" 
                                 id="name" name="name" value="{{$user->name}}" required autofocus autocomplete="name">
@@ -119,16 +120,12 @@ $user=Auth::user()
                                 id="surname" name="surname" value="{{$user->surname}}" required autofocus autocomplete="surname">
                             </div>
                             <div class="col-md-6">
-                                hum
                                 <input class="form-control" type="text" placeholder="Mobile"
                                 id="mobile" name="mobile" value="{{$user->mobile}}" required autofocus autocomplete="mobile">
                             </div>
                             <div class="col-md-6">
                                 <input class="form-control" type="text" placeholder="Email"
                                 id="email" name="email" value="{{$user->email}}" required autofocus autocomplete="email">
-                            </div>
-                            <div class="col-md-12">
-                                <input class="form-control" type="text" placeholder="Adresse">
                             </div>
                             <div class="col-md-12">
                                 <button class="btn">Mettre le compte a jour</button>
