@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\MessageBag;
 
 class ProfileController extends Controller
 {
@@ -35,6 +37,31 @@ class ProfileController extends Controller
         $request->user()->save();
 
         return Redirect::route('my-account')->with('status', 'profile-updated');
+    }
+
+    public function updatePassword(Request $request){
+        $errors = new MessageBag();
+        $password= $request->password;
+        $new_password= $request->new_password;
+        $new_password_clone= $request->new_password_clone;
+        $message=['error'=>false,'message'=>''];
+        if(Hash::check($password,$request->user()->password)){
+            if( $new_password==$new_password_clone){
+                $request->user()->fill([
+                    'password' => Hash::make($request->new_password)
+                ])->save();
+                $message['message']='mis a jour du mot de passe avec succes';
+            }else{
+                $message['error']=true;
+                $message['message']='les mots de passe ne se corresponde pas';
+            }
+
+        }else{
+            $message['error']=true;
+            $message['message']='mot de passe incorrect';
+        }
+        $errors->add('your_custom_error', 'Your custom error message!');
+        return redirect()->route('my-account')->with('status','message');
     }
 
     /**

@@ -1,8 +1,8 @@
 @extends('layout/base',['title'=>'compte'])
 
 @php
-$user=Auth::user() 
-@endphp 
+   $user=Auth::user()
+@endphp
 
 @section('content')
 <!-- My Account Start -->
@@ -11,23 +11,17 @@ $user=Auth::user()
         <div class="row">
             <div class="col-md-3">
                 <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i
-                            class="fa fa-tachometer-alt"></i>Tableau de bord</a>
-                    <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i
-                            class="fa fa-shopping-bag"></i>Ordres</a>
-                    <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i
-                            class="fa fa-credit-card"></i>Mode de paiement</a>
-                    <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i
-                            class="fa fa-map-marker-alt"></i>adresse</a>
-                    <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i
-                            class="fa fa-user"></i>Détails du compte</a>
+                    <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Tableau de bord</a>
+                    <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Ordres</a>
+                    <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Mode de paiement</a>
+                    <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>adresse</a>
+                    <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Détails du compte</a>
                     <a class="nav-link" href="{{ route('home') }}"><i class="fa fa-sign-out-alt"></i>Se déconnecter</a>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel"
-                        aria-labelledby="dashboard-nav">
+                    <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
                         <h4>Tableau de bord</h4>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra
@@ -109,23 +103,19 @@ $user=Auth::user()
                     <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                         <h4>Détails du compte</h4>
                         <form class="row" method="post" action="{{ route('profile.update') }}">
-                        @csrf
-                        @method('patch')
+                            @csrf
+                            @method('patch')
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Prénom" 
-                                id="name" name="name" value="{{$user->name}}" required autofocus autocomplete="name">
+                                <input class="form-control" type="text" placeholder="Prénom" id="name" name="name" value="{{$user->name}}" required autofocus autocomplete="name">
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Nom de famille"
-                                id="surname" name="surname" value="{{$user->surname}}" required autofocus autocomplete="surname">
+                                <input class="form-control" type="text" placeholder="Nom de famille" id="surname" name="surname" value="{{$user->surname}}" required autofocus autocomplete="surname">
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Mobile"
-                                id="mobile" name="mobile" value="{{$user->mobile}}" required autofocus autocomplete="mobile">
+                                <input class="form-control" type="text" placeholder="Mobile" id="mobile" name="mobile" value="{{$user->mobile}}" required autofocus autocomplete="mobile">
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Email"
-                                id="email" name="email" value="{{$user->email}}" required autofocus autocomplete="email">
+                                <input class="form-control" type="text" placeholder="Email" id="email" name="email" value="{{$user->email}}" required autofocus autocomplete="email">
                             </div>
                             <div class="col-md-12">
                                 <button class="btn">Mettre le compte a jour</button>
@@ -133,26 +123,33 @@ $user=Auth::user()
                             </div>
                         </form>
                         <h4>changer le mot de passe</h4>
-                        <div class="row">
+                        <form class="row" method="post" action="{{ route('profile.update') }}">
+                            @csrf
+                            @method('patch')
                             <div class="col-md-12">
-                                <input class="form-control" type="password" placeholder="Mot de passe actuel">
+                                <input class="form-control" type="password" placeholder="Mot de passe actuel" id="password" name="password" required autofocus>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="nouveau mot de passe">
+                                <input class="form-control" type="text" placeholder="nouveau mot de passe" id="new_password" name="new_password" required autofocus>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Confirmez le mot de passe">
+                                <input class="form-control" type="text" placeholder="Confirmez le mot de passe" id="new_password_clone" name="new_password_clone" required autofocus>
                             </div>
                             <div class="col-md-12">
                                 <button class="btn">Sauvegarder les modifications</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@if(session('status'))
+<script>
+    Swal("{{session('status')}}");
+</script>
+@endif
 <!-- My Account End -->
 
 @endsection
