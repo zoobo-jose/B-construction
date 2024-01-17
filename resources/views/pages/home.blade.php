@@ -38,43 +38,27 @@
             </div>
             <div class="col-md-6">
                 <div class="header-slider normal-slider">
+                    @foreach ($articlesHeader as $art)
                     <div class="header-slider-item">
-                        <img src="/img/article/img2.jpg" alt="Slider Image" />
+                        <img src="{{asset($art->image->url)}}" alt="Slider Image" />
                         <div class="header-slider-caption">
-                            <p>Il y a ici du texte qui décrit l'image</p>
+                            <p>{{$art->description}}</p>
                             <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Achetez</a>
                         </div>
                     </div>
-                    <div class="header-slider-item">
-                        <img src="/img/article/img1.jpg" alt="Slider Image" />
-                        <div class="header-slider-caption">
-                            <p>Il y a ici du texte qui décrit l'image</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Achetez</a>
-                        </div>
-                    </div>
-                    <div class="header-slider-item">
-                        <img src="/img/article/img3.jpg" alt="Slider Image" />
-                        <div class="header-slider-caption">
-                            <p>Il y a ici du texte qui décrit l'image</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Achetez</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="header-img">
+                    @foreach ($articlesHeader2 as $art)
                     <div class="img-item">
-                        <img src="/img/article/img1.jpg" />
-                        <a class="img-text" href="">
-                            <p>Il y a ici du texte qui décrit l'image</p>
+                        <img src="{{asset($art->image->url)}}" />
+                        <a class="img-text" href="{{route('product-detail')}}">
+                            <p>{{$art->description}}</p>
                         </a>
                     </div>
-                    <div class="img-item">
-                        <img src="/img/article/img2.jpg" />
-                        <a class="img-text" href="">
-                            <p>Il y a ici du texte qui décrit l'image</p>
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -148,45 +132,45 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="category-item ch-400">
-                    <img src="/img/article/img1.jpg" />
+                    <img src="{{asset($art_cat_1->image->url)}}" />
                     <a class="category-name" href="">
-                        <p>Il y a ici du texte qui décrit l'image</p>
+                        <p>Plan artchitectural {{$art_cat_1->categori->name}}</p>
                     </a>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="category-item ch-250">
-                    <img src="/img/article/img2.jpg" />
+                    <img src="{{asset($art_cat_2->image->url)}}" />
                     <a class="category-name" href="">
-                        <p>Il y a ici du texte qui décrit l'image</p>
+                        <p>Plan artchitectural {{$art_cat_2->categori->name}}</p>
                     </a>
                 </div>
                 <div class="category-item ch-150">
-                    <img src="/img/article/img3.jpg" />
+                    <img src="{{asset($art_cat_3->image->url)}}" />
                     <a class="category-name" href="">
-                        <p>Il y a ici du texte qui décrit l'image</p>
+                        <p>Plan artchitectural {{$art_cat_3->categori->name}}</p>
                     </a>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="category-item ch-150">
-                    <img src="/img/article/img4.jpg" />
+                    <img src="{{asset($art_cat_4->image->url)}}" />
                     <a class="category-name" href="">
-                        <p>Il y a ici du texte qui décrit l'image</p>
+                        <p>Plan artchitectural {{$art_cat_4->categori->name}}</p>
                     </a>
                 </div>
                 <div class="category-item ch-250">
-                    <img src="/img/article/img5.jpg" />
+                    <img src="{{asset($art_cat_5->image->url)}}" />-
                     <a class="category-name" href="">
-                        <p>Il y a ici du texte qui décrit l'image</p>
+                        <p>Plan artchitectural {{$art_cat_5->categori->name}}</p>
                     </a>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="category-item ch-400">
-                    <img src="/img/article/img6.jpg" />
+                    <img src="{{asset($art_cat_6->image->url)}}" />
                     <a class="category-name" href="">
-                        <p>Il y a ici du texte qui décrit l'image</p>
+                        <p>Plan artchitectural {{$art_cat_6->categori->name}}</p>
                     </a>
                 </div>
             </div>
@@ -217,146 +201,36 @@
             <h1>Produit en vedette</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+            @foreach ($articles_vedette as $art)
+                    <div class="col-lg-3">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="{{route('product-detail')}}">{{$art->name}}</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="{{route('product-detail')}}">
+                                    <img src="{{asset($art->image->url)}}" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3>{{$art->prix}} <span>XAF</span></h3>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img1.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="/img/article/img2.jpg">
-                            <img src="/img/article/img8.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img2.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img6.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img7.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -387,10 +261,11 @@
             <h1>Produit récent</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
+            @foreach ($new_articles as $art)
             <div class="col-lg-3">
                 <div class="product-item">
                     <div class="product-title">
-                        <a href="#">Nom du produit</a>
+                        <a href="{{route('product-detail')}}">{{$art->name}}</a>
                         <div class="ratting">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -400,8 +275,8 @@
                         </div>
                     </div>
                     <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img1.jpg" alt="Product Image">
+                        <a href="{{route('product-detail')}}">
+                            <img src="{{asset($art->image->url)}}" alt="Product Image">
                         </a>
                         <div class="product-action">
                             <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -410,123 +285,12 @@
                         </div>
                     </div>
                     <div class="product-price">
-                        <h3><span>$</span>99</h3>
+                        <h3>{{$art->prix}} <span>XAF</span></h3>
                         <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img2.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img2.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img8.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Nom du produit</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="/img/article/img6.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

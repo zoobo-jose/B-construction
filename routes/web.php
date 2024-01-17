@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Categori;
+use App\Models\Image;
+use App\Models\Pdf;
+use App\Models\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +50,20 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::name("home")->get('/', function () {
-    $categoris=Categori::all();
-    return view('pages/home',compact('categoris'));
+    $articlesHeader=Article::all()->take(3);
+    $articlesHeader2=Article::all()->take(2);
+    $articles_by_categori=Article::all()->take(6);
+    $art_cat_1=Article::find(2);
+    $art_cat_2=Article::find(3);
+    $art_cat_3=Article::find(4);
+    $art_cat_4=Article::find(5);
+    $art_cat_5=Article::find(6);
+    $art_cat_6=Article::find(7);
+    $articles_vedette=Article::all()->take(8);
+    $new_articles=Article::all()->take(8);
+    return view('pages/home',compact('articlesHeader','articlesHeader2',
+    'art_cat_1','art_cat_2','art_cat_3','art_cat_4','art_cat_5','art_cat_6',
+    'articles_vedette','new_articles'));
 });
 
 Route::name("product-list")->get('/product-list', function () {
