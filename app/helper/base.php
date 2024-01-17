@@ -35,3 +35,11 @@
         }
     }
  };
+
+ function is_current_profil_page($val){
+    if(isset($current)){
+        return $current==$val?'active':'';
+    }else{
+        return $val=='dashboard'?'active':'';
+    }
+}

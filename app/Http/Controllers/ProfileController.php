@@ -26,7 +26,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request)
     {
         $request->user()->fill($request->validated());
 
@@ -35,8 +35,9 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+        $message=['error'=>false,'message'=>' Mise a jour du compte reussi','current'=>'account'];
 
-        return Redirect::route('my-account')->with('status', 'profile-updated');
+        return view('pages/my-account',$message);
     }
 
     public function updatePassword(Request $request){
@@ -44,7 +45,7 @@ class ProfileController extends Controller
         $password= $request->password;
         $new_password= $request->new_password;
         $new_password_clone= $request->new_password_clone;
-        $message=['error'=>false,'message'=>''];
+        $message=['error'=>false,'message'=>'','current'=>'account'];
         if(Hash::check($password,$request->user()->password)){
             if( $new_password==$new_password_clone){
                 $request->user()->fill([
@@ -61,7 +62,7 @@ class ProfileController extends Controller
             $message['message']='mot de passe incorrect';
         }
         $errors->add('your_custom_error', 'Your custom error message!');
-        return redirect()->route('my-account')->with('status','message');
+        return view('pages/my-account',$message);
     }
 
     /**

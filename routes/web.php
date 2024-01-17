@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Categori;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::name("home")->get('/', function () {
-    return view('pages/home');
+    $categoris=Categori::all();
+    return view('pages/home',compact('categoris'));
 });
 
 Route::name("product-list")->get('/product-list', function () {
