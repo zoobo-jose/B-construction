@@ -43,3 +43,22 @@
         return $val=='dashboard'?'active':'';
     }
 }
+
+function construct_param_url($url,$params,$exeptions){
+    foreach ($exeptions as $key => $value) {
+       $params[$key]=$value;
+    }
+    $params_url=$url;
+    $i=0;
+    foreach ($params as $key => $value) {
+        if($value!=null){
+            if($i==0){
+                $params_url.="?".$key."=".$value;
+            }else{
+                $params_url.="&".$key."=".$value;
+            }
+            $i++;
+        }
+     }
+     return $params_url;
+}

@@ -1,9 +1,24 @@
 @extends('layout/base',['title'=>'liste de produits'])
 
 @section('content')
+    
 
-
-
+@php
+//search
+$search=isset($querystringArray['search'])?$querystringArray['search']:"";
+//url pour la recherche
+$url_search=construct_param_url(route('product-list'),$querystringArray,[]);
+// url pour faire du tri 
+  $url_sort=[];
+  foreach (['new','featured','sales'] as $key => $value) {
+    array_push($url_sort,construct_param_url(route('product-list'),$querystringArray,["order"=>$value]));                                                                                                                                                        
+  }
+// url pour faire du tri au prix
+$url_price=[];
+  foreach ([[5000,10000],[10000,50000],[50000,500000],[0,null]] as $key => $value) {
+    array_push($url_price,construct_param_url(route('product-list'),$querystringArray,["min_price"=>$value[0],"max_price"=>$value[1]]));                                                                                                                                                        
+  }
+@endphp
 <!-- Product List Start -->
 <div class="product-view">
     <div class="container-fluid">
@@ -12,11 +27,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="product-view-top">
-                            <form method="get" class="row" action="{{ route('product-list') }}">
-                                @csrf
+                            <form method="get" class="row" action="{{ $url_search }}">
                                 <div class="col-md-4">
                                     <div class="product-search">
-                                        <input type="text" id="value" name="word" value="{{old('word')}}" value="Search">
+                                        <input type="text" id="search" name="search" value="{{$search}}" value="Search">
                                         <button><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
@@ -25,9 +39,9 @@
                                         <div class="dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">Produit trié par</div>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">plus récent</a>
-                                                <a href="#" class="dropdown-item">plus populaire</a>
-                                                <a href="#" class="dropdown-item">plus vendu</a>
+                                                <a href="{{ $url_sort[0]}}" class="dropdown-item">plus récent</a>
+                                                <a href="{{ $url_sort[1] }}" class="dropdown-item">plus populaire</a>
+                                                <a href="{{ $url_sort[2] }}" class="dropdown-item">plus vendu</a>
                                             </div>
                                         </div>
                                     </div>
@@ -38,16 +52,10 @@
                                             <div class="dropdown-toggle" data-toggle="dropdown">Fourchette de prix
                                             </div>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">$0 to $50</a>
-                                                <a href="#" class="dropdown-item">$51 to $100</a>
-                                                <a href="#" class="dropdown-item">$101 to $150</a>
-                                                <a href="#" class="dropdown-item">$151 to $200</a>
-                                                <a href="#" class="dropdown-item">$201 to $250</a>
-                                                <a href="#" class="dropdown-item">$251 to $300</a>
-                                                <a href="#" class="dropdown-item">$301 to $350</a>
-                                                <a href="#" class="dropdown-item">$351 to $400</a>
-                                                <a href="#" class="dropdown-item">$401 to $450</a>
-                                                <a href="#" class="dropdown-item">$451 to $500</a>
+                                                <a href="{{ $url_price[3] }}" class="dropdown-item"> tout </a>
+                                                <a href="{{ $url_price[0] }}" class="dropdown-item">5000 - 10000</a>
+                                                <a href="{{ $url_price[1] }}" class="dropdown-item">10000 - 50000</a>
+                                                <a href="{{ $url_price[2] }}" class="dropdown-item"> 50000 et plus </a>
                                             </div>
                                         </div>
                                     </div>
@@ -57,32 +65,7 @@
                     </div>
                     @foreach ($articles as $art)
                         <div class="col-md-4">
-                            <div class="product-item">
-                                <div class="product-title">
-                                    <a href="#">{{$art->name}}</a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="product-image">
-                                    <a href="{{route('product-detail')}}">
-                                        <img src="{{asset($art->image->url)}}" alt="Product Image">
-                                    </a>
-                                    <div class="product-action">
-                                        <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                        <a href="#"><i class="fa fa-search"></i></a>
-                                    </div>
-                                </div>
-                                <div class="product-price">
-                                    <h3>{{$art->prix}} <span>XAF</span></h3>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                                </div>
-                            </div>
+                            <x-article :article="$art"/> 
                         </div>
                     @endforeach
                 </div>

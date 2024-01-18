@@ -10,6 +10,8 @@ use App\Models\Categori;
 
 class Article extends Model
 {
+    public $timestamps = true;
+    
     use HasFactory;
 
     public function images()

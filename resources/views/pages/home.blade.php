@@ -1,7 +1,6 @@
 @extends('layout/base',['title'=>'maison'])
 
 @section('content')
-
 <!-- Main Slider Start -->
 <div class="header">
     <div class="container-fluid">
@@ -203,32 +202,7 @@
         <div class="row align-items-center product-slider product-slider-4">
             @foreach ($articles_vedette as $art)
                     <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="{{route('product-detail')}}">{{$art->name}}</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="{{route('product-detail')}}">
-                                    <img src="{{asset($art->image->url)}}" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3>{{$art->prix}} <span>XAF</span></h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                            </div>
-                        </div>
+                        <x-article :article="$art"/> 
                     </div>
             @endforeach
         </div>
@@ -263,32 +237,7 @@
         <div class="row align-items-center product-slider product-slider-4">
             @foreach ($new_articles as $art)
             <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="{{route('product-detail')}}">{{$art->name}}</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="{{route('product-detail')}}">
-                            <img src="{{asset($art->image->url)}}" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3>{{$art->prix}} <span>XAF</span></h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
-                    </div>
-                </div>
+                <x-article :article="$art"/> 
             </div>
             @endforeach
         </div>

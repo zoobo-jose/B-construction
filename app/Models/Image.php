@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    public $timestamps = true;
     use HasFactory;
 }
