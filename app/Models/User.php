@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Article;
+use App\Models\Panier;
 
 class User extends Authenticatable
 {
@@ -59,4 +61,22 @@ class User extends Authenticatable
         'ville'=>'',
         'zipcode'=>'',
     ];
+    public function paniers()
+   {
+       return $this->hasMany(Panier::class);
+   }
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class, 'paniers');
+    }
+    /* article non paye */
+    public function articles_no_sold()
+    {
+        return $this->belongsToMany(Article::class, 'paniers')->where('sold',false);
+    }
+     /* article paye */
+    public function articles_sold()
+    {
+        return $this->belongsToMany(Article::class, 'paniers')->where('sold',true);
+    }
 }

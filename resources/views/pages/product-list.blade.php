@@ -30,7 +30,7 @@ $url_price=[];
                             <form method="get" class="row" action="{{ $url_search }}">
                                 <div class="col-md-4">
                                     <div class="product-search">
-                                        <input type="text" id="search" name="search" value="{{$search}}" value="Search">
+                                        <input type="text" id="search" name="search" value="{{$search}}" placeholder="Recherche">
                                         <button><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>

@@ -11,10 +11,9 @@ class ArticleController extends Controller
 {
     //
     /**
- 	* Store a new user.
+ 	* list des articles.
  	*
  	* @param  \Illuminate\Http\Request  $request
- 	* @return \Illuminate\Http\Response
  	*/
 	public function listArticles(Request $request)
 	{
@@ -54,5 +53,23 @@ class ArticleController extends Controller
 		$articles_sidebar=Article::all()->take(3);
         return view('pages/product-list',compact('articles','querystringArray','categoris','articles_sidebar'));
 	}
+	 //
+    /**
+ 	* affiche un article.
+ 	*
+ 	* @param  \Illuminate\Http\Request  $request
+ 	*/
+	 public function displayArticle(Request $request)
+	 {
+		$NUMBER_ARTICLE_BY_PAGINATION=3;
+		$articles_sidebar=Article::all()->take(3);
+		$categoris=Categori::all();
+		$article=Article::find($request->id);
+		if( $request->has('id')){
+			$article=Article::find($request->id);
+		}
+		$articles_connexes=Article::all()->where('categori_id',$article->categori_id);
+		 return view('pages/product-detail',compact('article','categoris','articles_sidebar','articles_connexes'));
+	 }
 
 }

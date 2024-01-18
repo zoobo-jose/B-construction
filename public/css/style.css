@@ -1,7 +1,9 @@
 /**********************************/
 /********** General CSS ***********/
 /**********************************/
-
+/*
+    product-action
+*/
 :root{
     --color1:#9e009c;
     --color1-hover:#ca17c7;
@@ -45,6 +47,13 @@ h2 {
     font-family: 'Source Code Pro', monospace;
     font-weight: 700;
 }
+.green{
+    color:green;
+}
+.red{
+    color:red;
+}
+
 
 @media(min-width: 992px) {
     .container-fluid {
@@ -783,7 +792,8 @@ h2 {
     opacity: 1; 
 }
 
-.product-item .product-image .product-action a {
+.product-item .product-image .product-action a ,
+.product-item .product-image .product-action .a {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -797,17 +807,21 @@ h2 {
     border-radius: 4px;
     transition: all .3s;
     margin-top: 50px;
+    cursor: pointer;
 }
 
-.product-item:hover .product-image .product-action a {
+.product-item:hover .product-image .product-action a,
+.product-item:hover .product-image .product-action .a {
     margin-top: 0;
 }
 
-.product-item .product-image .product-action a:last-child {
+.product-item .product-image .product-action a:last-child,
+.product-item .product-image .product-action .a:last-child {
     margin-right: 0;
 }
 
-.product-item .product-image .product-action a:hover {
+.product-item .product-image .product-action a:hover ,
+.product-item .product-image .product-action .a:hover {
     color: var(--color1);
     background: #ffffff;
     border: 1px solid var(--color1);
@@ -899,7 +913,7 @@ h2 {
     background: var(--color1);
 }
 
-.product .slick-prev::before,
+.product .slick-prev::before, 
 .product .slick-next::before {
     font-family: "Font Awesome 5 Free";
     font-size: 18px;

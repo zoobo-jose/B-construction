@@ -1,7 +1,9 @@
 @extends('layout/base',['title'=>'parnier'])
 
 @section('content')
-
+@php
+   $user=Auth::user();
+@endphp
 <!-- Cart Start -->
 <div class="cart-page">
     <div class="container-fluid">
@@ -14,102 +16,42 @@
                                 <tr>
                                     <th>Produit</th>
                                     <th>Prix</th>
-                                    <th>Quantité</th>
-                                    <th>Total</th>
+                                    {{-- <th>Quantité</th>
+                                    <th>Total</th> --}}
                                     <th>Retirer</th>
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
+                                @foreach ($user->articles_no_sold as $art)
                                 <tr>
                                     <td>
                                         <div class="img">
-                                            <a href="#"><img src="/img/article/img1.jpg" alt="Image"></a>
-                                            <p>Nom du produit</p>
+                                            <a href="{{route('product-detail',['id'=>$art->id])}}"><img src="{{asset($art->image->url)}}" alt="Image"></a>
+                                            <p>{{$art->name}}</p>
                                         </div>
                                     </td>
-                                    <td>$99</td>
                                     <td>
+                                        {{$art->prix}} XAF
+                                    </td>
+                                    {{-- <td>
                                         <div class="qty">
                                             <button class="btn-minus"><i class="fa fa-minus"></i></button>
                                             <input type="text" value="1">
                                             <button class="btn-plus"><i class="fa fa-plus"></i></button>
                                         </div>
+                                    </td> --}}
+                                    {{-- <td>$99</td> --}}
+                                    <td>
+                                        <form method="post" action="{{ route('cart.delete') }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" value="{{$art->id}}" id="article_id" name="article_id">
+                                            <button><i class="fa fa-trash"></i></button>
+                                        </form>
                                     </td>
-                                    <td>$99</td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="/img/article/img2.jpg" alt="Image"></a>
-                                            <p>Nom du produit</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="/img/article/img3.jpg" alt="Image"></a>
-                                            <p>Nom du produit</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="/img/article/img4.jpg" alt="Image"></a>
-                                            <p>Nom du produit</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="/img/article/img5.jpg" alt="Image"></a>
-                                            <p>Nom du produit</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>
@@ -128,12 +70,12 @@
                             <div class="cart-summary">
                                 <div class="cart-content">
                                     <h1>Résumé</h1>
-                                    <p>Sous-total<span>$99</span></p>
-                                    <p>Frais de livraison<span>$1</span></p>
-                                    <h2>Grand Total<span>$100</span></h2>
+                                    {{-- <p>Sous-total<span>$99</span></p>
+                                    <p>Frais de livraison<span>$1</span></p> --}}
+                                    <h2>Grand Total<span>{{ $total_prize}} XAF</span></h2>
                                 </div>
                                 <div class="cart-btn">
-                                    <button>Mise à jou</button>
+                                    <button>Mise à jour</button>
                                     <button>Vérifier</button>
                                 </div>
                             </div>
@@ -145,4 +87,12 @@
     </div>
 </div>
 <!-- Cart End -->
+
+@if(isset($article_removed))
+    @if($article_removed['deleted'])
+        <script type="text/javascript">
+            Swal.fire("{{$article_removed['article_name'].' enleve du panier'}}");
+        </script>
+    @endif
+ @endif
 @endsection

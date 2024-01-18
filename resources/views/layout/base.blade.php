@@ -61,12 +61,9 @@
                             class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('home'))}}">Maison</a>
                         <a href="{{ route('product-list') }}"
                             class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('product-list'))}}">Produits</a>
-                        <a href="{{ route('product-detail') }}"
-                            class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('product-detail'))}}">Détail
-                            du Produit</a>
                         @if(Auth::check())
                             <a href="{{ route('cart') }}"
-                                class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('cart'))}}">
+                                class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('cart')||Route::is('cart.delete'))}}">
                                 Panier
                             </a>
                             <a href="{{ route('checkout') }}"
@@ -133,20 +130,20 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="search">
-                        <input type="text" placeholder="Recherche">
+                    <form class="search"  method="get" action="{{ route('product-list') }}">
+                        <input type="text" id="search" name="search" placeholder="Recherche">
                         <button><i class="fa fa-search"></i></button>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-md-3">
                     <div class="user">
                         <a href="wishlist.html" class="btn wishlist">
                             <i class="fa fa-heart"></i>
-                            <span>(0)</span>
+                            <span id="like">(0)</span>
                         </a>
-                        <a href="cart.html" class="btn cart">
+                        <a href="{{route('cart')}}" class="btn cart">
                             <i class="fa fa-shopping-cart"></i>
-                            <span>(0)</span>
+                            <span id="nbr_articles">({{Auth::check()?count(Auth::user()->articles_no_sold):0}})</span>
                         </a>
                     </div>
                 </div>
@@ -273,6 +270,7 @@
 
     <!-- Template Javascript -->
     <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/request.js')}}"></script>
    
 </body>
 

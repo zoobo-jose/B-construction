@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\PanierController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
+use App\Models\Panier;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/password-update', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
     /*end  breeze route */
     
-    Route::name("cart")->get('/cart', function () {
-        return view('pages/cart');
-    });
+    Route::name("cart")->get('/cart',  [PanierController::class, 'displayPanier']);
+
+    Route::name("cart.add")->put('/cart/add',  [PanierController::class, 'addArticle']);
+
+    Route::name("cart.delete")->delete('/cart/remove',  [PanierController::class, 'removeArticle']);
     
     Route::name("checkout")->get('/checkout', function () {
         return view('pages/checkout');
@@ -59,16 +63,16 @@ Route::name("home")->get('/', function () {
     $art_cat_6=Article::find(7);
     $articles_vedette=Article::all()->take(8);
     $new_articles=Article::all()->take(8);
+    $paniers=Panier::all();
     return view('pages/home',compact('articlesHeader','articlesHeader2',
     'art_cat_1','art_cat_2','art_cat_3','art_cat_4','art_cat_5','art_cat_6',
-    'articles_vedette','new_articles'));
+    'articles_vedette','new_articles','paniers'));
 });
 
 Route::name("product-list")->get('/product-list', [ArticleController::class, 'listArticles']);
 
-Route::name("product-detail")->get('/product-detail', function () {
-    return view('pages/product-detail');
-});
+Route::name("product-detail")->get('/product-detail/{id?}',[ArticleController::class, 'displayArticle'])
+->whereNumber('id');
 
 Route::name("login")->get('/login', function () {
     return view('pages/login');

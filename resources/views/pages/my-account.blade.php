@@ -59,30 +59,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($user->paniers as $pan)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
+                                        <td>{{$loop->index +1}}</td>
+                                        <td>{{$pan->article->name}}</td>
+                                        <td>{{$pan->create_at?'date':'date'}}</td>
+                                        <td>{{$pan->article->prix}} XAF</td>
+                                        @if($pan->sold)
+                                            <td><span class='green'>Acheté</span></td>
+                                        @else
+                                            <td><span class='red'>attente</span></td>
+                                        @endif
+                                        
+                                        <td>
+                                            <a href="{{route('product-detail',['id'=>$pan->article->id])}}">
+                                                <button class="btn">Voir</button>
+                                            <a>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
-                                    </tr>
+                                    @endforeach
+                                   
                                 </tbody>
                             </table>
                         </div>
@@ -162,7 +158,6 @@
     <script type="text/javascript">
         Swal.fire("{{$message}}");
     </script>
-    jj
 @endif
 <!-- My Account End -->
 

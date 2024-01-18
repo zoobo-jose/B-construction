@@ -53,7 +53,7 @@
                     @foreach ($articlesHeader2 as $art)
                     <div class="img-item">
                         <img src="{{asset($art->image->url)}}" />
-                        <a class="img-text" href="{{route('product-detail')}}">
+                        <a class="img-text" href="{{route('product-detail',['id'=>$art->id])}}">
                             <p>{{$art->description}}</p>
                         </a>
                     </div>
