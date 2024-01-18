@@ -15,6 +15,7 @@ class Panier extends Model
         'user_id',
         'created_at',
         'updated_at',
+        'sold'
     ];
     protected $attributes = [
         'sold' => false,

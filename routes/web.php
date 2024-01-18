@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\WishController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
 use App\Models\Panier;
@@ -38,6 +39,12 @@ Route::middleware('auth')->group(function () {
 
     Route::name("cart.delete")->delete('/cart/remove',  [PanierController::class, 'removeArticle']);
     
+    Route::name("wishlist")->get('/wishlist', [WishController::class, 'displayWish']);
+    
+    Route::name("wishlist.add")->put('/wishlist/add',  [WishController::class, 'addArticle']);
+
+    Route::name("wishlist.delete")->delete('/wishlist/remove',  [WishController::class, 'removeArticle']);
+
     Route::name("checkout")->get('/checkout', function () {
         return view('pages/checkout');
     });
@@ -46,9 +53,7 @@ Route::middleware('auth')->group(function () {
         return view('pages/my-account');
     });
     
-    Route::name("wishlist")->get('/wishlist', function () {
-        return view('pages/wishlist');
-    });
+   
 });
 
 Route::name("home")->get('/', function () {

@@ -1,7 +1,9 @@
 @extends('layout/base',['title'=>'liste de souhaits'])
 
 @section('content')
-
+@php
+   $user=Auth::user();
+@endphp
 <!-- Wishlist Start -->
 <div class="wishlist-page">
     <div class="container-fluid">
@@ -14,102 +16,31 @@
                                 <tr>
                                     <th>Produit</th>
                                     <th>Prix</th>
-                                    <th>Quantité</th>
                                     <th>Ajouter au panier</th>
                                     <th>Retirer</th>
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
+                                @foreach ($user->articles_wishs as $art)
                                 <tr>
                                     <td>
                                         <div class="img">
-                                            <a href="#"><img src="/img/article/img1.jpg"  alt="Image"></a>
-                                            <p>Nom du produit</p>
+                                            <a href="#"><img src="{{asset($art->image->url)}}"  alt="Image"></a>
+                                            <p>{{$art->name}}</p>
                                         </div>
                                     </td>
-                                    <td>$99</td>
+                                    <td>{{$art->prix}} XAF</td>
+                                    <td><button class="btn-cart" onclick="addArticleToCart({{$art->id}})">Ajouter au panier</button></td>
                                     <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
+                                        <form method="post" action="{{ route('wishlist.delete') }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" value="{{$art->id}}" id="article_id" name="article_id">
+                                            <button><i class="fa fa-trash"></i></button>
+                                        </form>
                                     </td>
-                                    <td><button class="btn-cart">Ajouter au panier</button></td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="/img/article/img2.jpg"  alt="Image"></a>
-                                            <p>Nom du produit</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><button class="btn-cart">Ajouter au panier</button></td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="/img/article/img3.jpg"  alt="Image"></a>
-                                            <p>Nom du produit</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><button class="btn-cart">Ajouter au panier</button></td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="/img/article/img4.jpg"  alt="Image"></a>
-                                            <p>Nom du produit</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><button class="btn-cart">Ajouter au panier</button></td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="/img/article/img5.jpg"  alt="Image"></a>
-                                            <p>Nom du produit</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>
-                                        <div class="qty">
-                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="1">
-                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><button class="btn-cart">Ajouter au panier</button></td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -118,6 +49,13 @@
         </div>
     </div>
 </div>
+@if(isset($article_removed))
+    @if($article_removed['deleted'])
+        <script type="text/javascript">
+            Swal.fire("{{$article_removed['article_name'].' enleve de la liste de souhait'}}");
+        </script>
+    @endif
+ @endif
 <!-- Wishlist End -->
 
 @endsection

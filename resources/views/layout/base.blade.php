@@ -137,9 +137,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="user">
-                        <a href="wishlist.html" class="btn wishlist">
+                        <a href="{{route('wishlist')}}" class="btn wishlist">
                             <i class="fa fa-heart"></i>
-                            <span id="like">(0)</span>
+                            <span id="nbr_wishs">({{Auth::check()?count(Auth::user()->articles_wishs):0}})</span>
                         </a>
                         <a href="{{route('cart')}}" class="btn cart">
                             <i class="fa fa-shopping-cart"></i>

@@ -19,7 +19,7 @@
             </a>
             <div class="product-action">
                 <span class="a" onclick="addArticleToCart({{$article->id}})"><i class="fa fa-cart-plus"></i></span>
-                <a href="#"><i class="fa fa-heart"></i></a>
+                <span class="a" onclick="addArticleToWishList({{$article->id}})"><i class="fa fa-heart"></i></span>
                 <a href="{{ $url_article}}"><i class="fa fa-search"></i></a>
             </div>
         </div>

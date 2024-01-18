@@ -79,4 +79,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Article::class, 'paniers')->where('sold',true);
     }
+    public function articles_wishs()
+    {
+        return $this->belongsToMany(Article::class, 'wishes');
+    }
 }
