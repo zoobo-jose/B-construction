@@ -5,6 +5,18 @@
         <nav class="navbar bg-light">
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route('product-list')}}"><i class="fa fa-female"></i>Tout</a>
+                </li>
+                @foreach ($categoris as $cat)
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('product-list')."?categori=".$cat->id}}">
+                        <i class="fa fa-female"></i>
+                        {{$cat->name}}
+                    </a>
+                </li>
+                @endforeach
+                <!--
+                <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion beauté</a>
                 </li>
                 <li class="nav-item">
@@ -20,12 +32,41 @@
                     <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Électronique &
                         Accessoires</a>
                 </li>
+            -->
             </ul>
         </nav>
     </div>
 
     <div class="sidebar-widget widget-slider">
         <div class="sidebar-slider normal-slider">
+            @foreach ($articles_sidebar as $art)
+                <div class="product-item">
+                    <div class="product-title">
+                        <a href="#">{{$art->name}}</a>
+                        <div class="ratting">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="product-image">
+                        <a href="{{route('product-detail')}}">
+                            <img src="{{asset($art->image->url)}}" alt="Product Image">
+                        </a>
+                        <div class="product-action">
+                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+                            <a href="#"><i class="fa fa-heart"></i></a>
+                            <a href="#"><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-price">
+                        <h3>{{$art->prix}} <span>XAF</span></h3>
+                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Acheter</a>
+                    </div>
+                </div>
+            @endforeach
             <div class="product-item">
                 <div class="product-title">
                     <a href="#">Nom du produit</a>

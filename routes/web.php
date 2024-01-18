@@ -1,10 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Categori;
-use App\Models\Image;
-use App\Models\Pdf;
 use App\Models\Article;
 
 /*
@@ -66,9 +64,7 @@ Route::name("home")->get('/', function () {
     'articles_vedette','new_articles'));
 });
 
-Route::name("product-list")->get('/product-list', function () {
-    return view('pages/product-list');
-});
+Route::name("product-list")->get('/product-list', [ArticleController::class, 'listArticles']);
 
 Route::name("product-detail")->get('/product-detail', function () {
     return view('pages/product-detail');

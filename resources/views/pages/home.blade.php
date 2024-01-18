@@ -133,7 +133,7 @@
             <div class="col-md-3">
                 <div class="category-item ch-400">
                     <img src="{{asset($art_cat_1->image->url)}}" />
-                    <a class="category-name" href="">
+                    <a class="category-name" href="{{route('product-list')."?categori=".$art_cat_1->categori_id}}">
                         <p>Plan artchitectural {{$art_cat_1->categori->name}}</p>
                     </a>
                 </div>
@@ -141,13 +141,13 @@
             <div class="col-md-3">
                 <div class="category-item ch-250">
                     <img src="{{asset($art_cat_2->image->url)}}" />
-                    <a class="category-name" href="">
+                    <a class="category-name" href="{{route('product-list')."?categori=".$art_cat_2->categori_id}}">
                         <p>Plan artchitectural {{$art_cat_2->categori->name}}</p>
                     </a>
                 </div>
                 <div class="category-item ch-150">
                     <img src="{{asset($art_cat_3->image->url)}}" />
-                    <a class="category-name" href="">
+                    <a class="category-name" href="{{route('product-list')."?categori=".$art_cat_3->categori_id}}">
                         <p>Plan artchitectural {{$art_cat_3->categori->name}}</p>
                     </a>
                 </div>
@@ -155,13 +155,13 @@
             <div class="col-md-3">
                 <div class="category-item ch-150">
                     <img src="{{asset($art_cat_4->image->url)}}" />
-                    <a class="category-name" href="">
+                    <a class="category-name" href="{{route('product-list')."?categori=".$art_cat_4->categori_id}}">
                         <p>Plan artchitectural {{$art_cat_4->categori->name}}</p>
                     </a>
                 </div>
                 <div class="category-item ch-250">
                     <img src="{{asset($art_cat_5->image->url)}}" />-
-                    <a class="category-name" href="">
+                    <a class="category-name" href="{{route('product-list')."?categori=".$art_cat_5->categori_id}}">
                         <p>Plan artchitectural {{$art_cat_5->categori->name}}</p>
                     </a>
                 </div>
@@ -169,7 +169,7 @@
             <div class="col-md-3">
                 <div class="category-item ch-400">
                     <img src="{{asset($art_cat_6->image->url)}}" />
-                    <a class="category-name" href="">
+                    <a class="category-name" href="{{route('product-list')."?categori=".$art_cat_6->categori_id}}">
                         <p>Plan artchitectural {{$art_cat_6->categori->name}}</p>
                     </a>
                 </div>
