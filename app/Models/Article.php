@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
 use App\Models\Pdf;
 use App\Models\Categori;
+use App\Models\Comment;
 
 class Article extends Model
 {
@@ -31,6 +32,10 @@ class Article extends Model
    public function categori()
    {
        return $this->belongsTo(Categori::class);
+   }
+   public function comments()
+   {
+       return $this->hasMany(Comment::class);
    }
    
 

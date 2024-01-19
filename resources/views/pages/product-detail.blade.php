@@ -81,7 +81,10 @@
                                  <a class="nav-link" data-toggle="pill" href="#specification">Specification</a>
                              </li>
                              <li class="nav-item">
-                                 <a class="nav-link" data-toggle="pill" href="#reviews">Commentaires (1)</a>
+                                 <a class="nav-link" data-toggle="pill" href="#reviews">
+                                    Commentaires  
+                                    <span id="nbr_comments">({{count($article->comments)}})</span>
+                                </a>
                              </li>
                          </ul>
 
@@ -103,44 +106,50 @@
                                  </ul>
                              </div>
                              <div id="reviews" class="container tab-pane fade">
-                                 <div class="reviews-submitted">
-                                     <div class="reviewer">Phasellus Gravida - <span>01 Jan 2020</span></div>
-                                     <div class="ratting">
-                                         <i class="fa fa-star"></i>
-                                         <i class="fa fa-star"></i>
-                                         <i class="fa fa-star"></i>
-                                         <i class="fa fa-star"></i>
-                                         <i class="fa fa-star"></i>
-                                     </div>
-                                     <p>
-                                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                         doloremque laudantium, totam rem aperiam.
-                                     </p>
-                                 </div>
+                                <div id="list-comments">
+                                @foreach ($article->comments as $com)
+                                    <div class="reviews-submitted">
+                                        <div class="reviewer">{{$com->user_name}} - <span>{{$com->created_at}}</span></div>
+                                        <div class="ratting">
+                                            @for ($i=0;$i<$com->user_rate;$i++)
+                                                <i class="fa fa-star"></i>
+                                            @endfor
+                                        </div>
+                                        <p>
+                                            {{$com->content}}
+                                        </p>
+                                    </div>
+                                @endforeach
+                                </div>
+                                 
                                  <div class="reviews-submit">
                                      <h4>Give your Review:</h4>
                                      <div class="ratting">
-                                         <i class="far fa-star"></i>
-                                         <i class="far fa-star"></i>
-                                         <i class="far fa-star"></i>
-                                         <i class="far fa-star"></i>
-                                         <i class="far fa-star"></i>
+                                         <i class="far fa-star" onclick="set_user_rate(1)"></i>
+                                         <i class="far fa-star" onclick="set_user_rate(2)"></i>
+                                         <i class="far fa-star" onclick="set_user_rate(3)"></i>
+                                         <i class="far fa-star" onclick="set_user_rate(4)"></i>
+                                         <i class="far fa-star" onclick="set_user_rate(5)"></i>
                                      </div>
                                      <div class="row form">
+                                        @csrf
                                          <div class="col-sm-6">
-                                             <input type="text" placeholder="Name">
+                                             <input id="user_name" type="text" placeholder="Name">
                                          </div>
                                          <div class="col-sm-6">
-                                             <input type="email" placeholder="Email">
+                                             <input id="user_email" type="email" placeholder="Email">
                                          </div>
                                          <div class="col-sm-12">
-                                             <textarea placeholder="Review"></textarea>
+                                             <textarea id="content" placeholder="Review"></textarea>
                                          </div>
+                                         <input id="article_id" type="hidden"  value="{{$article->id}}">
+                                         <input id="user_rate" type="hidden" value="0">
                                          <div class="col-sm-12">
-                                             <button>Soumettre</button>
+                                             <button onclick="addCommentToArticle()">Soumettre</button>
                                          </div>
                                      </div>
                                  </div>
+
                              </div>
                          </div>
                      </div>

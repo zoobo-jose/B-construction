@@ -211,7 +211,8 @@
 <!-- Featured Product End -->
 
 <!-- Newsletter Start -->
-<div class="newsletter">
+<form class="newsletter" method="POST" action="{{ route('newsletter') }}">
+    @csrf
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
@@ -219,13 +220,13 @@
             </div>
             <div class="col-md-6">
                 <div class="form">
-                    <input type="email" value="votre email ici">
+                    <input type="email" name="email" id="email" placeholder="votre email ici">
                     <button>Soumettre</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- Newsletter End -->
 
 <!-- Recent Product Start -->

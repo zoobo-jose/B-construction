@@ -4,9 +4,16 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\WishController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
-use App\Models\Panier;
+use App\Models\Comment;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -68,10 +75,10 @@ Route::name("home")->get('/', function () {
     $art_cat_6=Article::find(7);
     $articles_vedette=Article::all()->take(8);
     $new_articles=Article::all()->take(8);
-    $paniers=Panier::all();
+    $comments=Comment::all();
     return view('pages/home',compact('articlesHeader','articlesHeader2',
     'art_cat_1','art_cat_2','art_cat_3','art_cat_4','art_cat_5','art_cat_6',
-    'articles_vedette','new_articles','paniers'));
+    'articles_vedette','new_articles','comments'));
 });
 
 Route::name("product-list")->get('/product-list', [ArticleController::class, 'listArticles']);
@@ -85,6 +92,23 @@ Route::name("login")->get('/login', function () {
 
 Route::name("contact")->get('/contact', function () {
     return view('pages/contact');
+});
+
+Route::name("newsletter")->post('/newsletter', [NewsletterController::class, 'store']);
+
+Route::name("comment.add")->any('/comment/add',  [CommentController::class, 'addComment']);
+
+Route::name("test")->get('/test', function(Request $request){
+    return view('test');
+});
+Route::name("test.post")->post('/test', function(Request $request){
+    $file = $request->file('file');
+    if($file){
+        $name = $file->getClientOriginalName();
+        dd(Storage::disk('local')->put('files/img', $file));
+    }
+    $url_file=Storage::download('test.webp');
+    return view('test',compact('url_file'));
 });
 
 require __DIR__.'/auth.php';

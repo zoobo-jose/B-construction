@@ -25,7 +25,7 @@
         </div>
         <div class="product-price">
             <h3>{{$article->prix}} <span>XAF</span></h3>
-            <a class="btn" href=""><i class="fa fa-shopping-carticle"></i>Acheter</a>
+            <button class="btn" onclick="buyArticle({{$article->id}})"><i class="fa fa-shopping-carticle"></i>Acheter</button>
         </div>
     </div>
 </div>
