@@ -17,7 +17,7 @@ class CommentController extends Controller
         $user_name=$request->user_name;
         $user_email=$request->user_email;
         $user_rate=$request->user_rate;
-        $content=$request->user_name;
+        $content=$request->content;
         $article_id=$request->article_id;
         $created_at=date('Y-m-d H:i:s');
         $n_comments= count(Comment::where('article_id', $article_id)->get());
