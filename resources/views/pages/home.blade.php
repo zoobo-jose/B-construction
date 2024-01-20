@@ -42,7 +42,7 @@
                         <img src="{{asset($art->image->url)}}" alt="Slider Image" />
                         <div class="header-slider-caption">
                             <p>{{$art->description}}</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Achetez</a>
+                            <span class="btn"  onclick="buyArticle({{$art->id}})" ><i class="fa fa-shopping-cart"></i>Achetez</span>
                         </div>
                     </div>
                     @endforeach

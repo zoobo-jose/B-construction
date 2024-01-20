@@ -63,8 +63,8 @@
                                      </div>
                                  </div> --}}
                                  <div class="action">
-                                     <a class="btn" href="#" onclick="addArticleToCart({{$article->id}})"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
-                                     <a class="btn" href="#"><i class="fa fa-shopping-bag"></i>Acheter</a>
+                                     <span class="btn"  onclick="addArticleToCart({{$article->id}})"><i class="fa fa-shopping-cart"></i>Ajouter au panier</span >
+                                     <span  class="btn"  onclick="buyArticle({{$article->id}})"><i class="fa fa-shopping-bag"></i>Acheter</span >
                                  </div>
                              </div>
                          </div>
@@ -175,7 +175,6 @@
      </div>
  </div>
  <!-- Product Detail End -->
-
  @include('layout/partial/brand')
 
  @endsection

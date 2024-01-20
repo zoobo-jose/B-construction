@@ -18,15 +18,21 @@ function addArticleToCart(article_id,callback){
             body: JSON.stringify({article_id})
         }).then((response)=>response.json())
         .then((response)=>{
-            if(callback){
-                callback(response)
+            console.log(response)
+            if(response.nbr_articles||response.error===true){
+                if(callback){
+                    callback(response);
+                }else{
+                    Swal.fire(response.message);
+                    if(!response.error){
+                        set_nbr_articles(response.nbr_articles);
+                    }
+                }
+                
             }else{
-                Swal.fire(response.message);
-            if(!response.error){
-                set_nbr_articles(response.nbr_articles);
+                show_message_connect_you()
             }
-            }
-            
+           
         }).catch((error)=>{
             Swal.fire({
                 title: "Internet?",
@@ -35,15 +41,18 @@ function addArticleToCart(article_id,callback){
               });
         })
     }else{
+        show_message_connect_you()
        
-        Swal.fire({
-            title: "Connectez vous pour continuer",
-            showConfirmButton: false,
-            html: "<a href='/login' style='display:inline-block;color:white;background-color:var(--color1);padding:10px 20px;border-radius:10px;margin:2px;'>Connetez </a> vous ou creez un compte!",
-          });
     }
 }
 
+function  show_message_connect_you(){
+    Swal.fire({
+        title: "Connectez vous pour continuer",
+        showConfirmButton: false,
+        html: "<a href='/login' style='display:inline-block;color:white;background-color:var(--color1);padding:10px 20px;border-radius:10px;margin:2px;'>Connetez </a> vous ou creez un compte!",
+      });
+}
 function set_nbr_articles(n){
     console.log('----')
     let item =document.getElementById('nbr_articles');
@@ -68,9 +77,13 @@ function addArticleToWishList(article_id){
             body: JSON.stringify({article_id})
         }).then((response)=>response.json())
         .then((response)=>{
-            Swal.fire(response.message);
-            if(!response.error){
-                set_nbr_wishs(response.nbr_articles_wish);
+            if(response.nbr_articles_wish||response.error===true){
+                Swal.fire(response.message);
+                if(!response.error){
+                    set_nbr_wishs(response.nbr_articles_wish);
+                }
+            }else{
+                show_message_connect_you();
             }
         }).catch((error)=>{
             Swal.fire({
@@ -81,11 +94,7 @@ function addArticleToWishList(article_id){
         })
     }else{
        
-        Swal.fire({
-            title: "Connectez vous pour continuer",
-            showConfirmButton: false,
-            html: "<a href='/login' style='display:inline-block;color:white;background-color:var(--color1);padding:10px 20px;border-radius:10px;margin:2px;'>Connetez </a> vous ou creez un compte!",
-          });
+        show_message_connect_you();
     }
 }
 function set_nbr_wishs(n){
@@ -123,6 +132,7 @@ function addCommentToArticle(){
             body: JSON.stringify({article_id,user_name,user_email,user_rate,content})
         }).then((response)=>response.json())
         .then((response)=>{
+           
             Swal.fire(response.message);
             console.log(response)
             if(!response.error){
