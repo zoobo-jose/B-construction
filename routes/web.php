@@ -111,4 +111,8 @@ Route::name("test.post")->post('/test', function(Request $request){
     return view('test',compact('url_file'));
 });
 
+
+
+
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';

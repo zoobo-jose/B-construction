@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Article;
 use App\Models\Panier;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -83,4 +84,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Article::class, 'wishes');
     }
+    public function role()
+   {
+       return $this->hasOne(Role::class);
+   }
 }

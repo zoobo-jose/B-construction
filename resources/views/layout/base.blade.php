@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,6 +77,15 @@
                             class="{{concat_chain_on_condition('nav-item nav-link ','active', Route::is('my-account'))}}">Mon
                                 compte
                             </a>
+                            @php
+                                $user=Auth::user();
+                            @endphp
+                            @if($user->role&&$user->role->name=="admin")
+                                <a href="{{ route('admin') }}"
+                                class="nav-item nav-link">
+                                    Adminsitrateur
+                                </a>
+                            @endif
                         @endif
                         <div class="nav-item dropdown">
                             <a href="#"

@@ -9,4 +9,11 @@ class Categori extends Model
 {
     public $timestamps = true;
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'created_at',
+        'updated_at',
+        
+    ];
 }
