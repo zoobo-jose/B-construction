@@ -126,6 +126,7 @@
 <!-- Feature End-->
 
 <!-- Category Start-->
+@if($display_cat)
 <div class="category">
     <div class="container-fluid">
         <div class="row">
@@ -176,6 +177,7 @@
         </div>
     </div>
 </div>
+@endif
 <!-- Category End-->
 
 <!-- Call to Action Start -->

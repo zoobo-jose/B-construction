@@ -68,7 +68,14 @@
                             </th>
                             -->
                             <th>
-                                <a class="btn bg-gradient-danger text-gray-100" href="">supprimer</a>
+                                <form method="POST" action="{{ route('admin.article.delete') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="hidden" name="id" value={{$art->id}}>
+                                    <button class="btn bg-gradient-danger text-gray-100">
+                                        supprimer
+                                    </button>
+                                </form>
                             </th>
                         </tr>
                         @endforeach

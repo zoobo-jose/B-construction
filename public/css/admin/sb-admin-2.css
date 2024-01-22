@@ -11312,3 +11312,8 @@ body.sidebar-toggled footer.sticky-footer {
   margin-top: 10px;
 
 }
+.logo-img{
+  width:200px;
+  height:50px;
+  object-fit: contain;
+}

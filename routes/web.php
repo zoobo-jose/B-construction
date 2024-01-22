@@ -67,18 +67,28 @@ Route::name("home")->get('/', function () {
     $articlesHeader=Article::all()->take(3);
     $articlesHeader2=Article::all()->take(2);
     $articles_by_categori=Article::all()->take(6);
-    $art_cat_1=Article::find(2);
-    $art_cat_2=Article::find(3);
-    $art_cat_3=Article::find(4);
-    $art_cat_4=Article::find(5);
-    $art_cat_5=Article::find(6);
-    $art_cat_6=Article::find(7);
+    $art_cat_1=null;
+    $art_cat_2=null;
+    $art_cat_3=null;
+    $art_cat_4=null;
+    $art_cat_5=null;
+    $art_cat_6=null;
+    $display_cat=false;
+    if(count(Article::all())>=6){
+        $display_cat=true;
+        $arts_cat=Article::all()->take(6);
+        $check="";
+        foreach($arts_cat as $i=>$cat){
+            $art_cat_="art_cat_".($i+1);
+            $$art_cat_=$cat;
+        }
+    }
     $articles_vedette=Article::all()->take(8);
     $new_articles=Article::all()->take(8);
     $comments=Comment::all();
     return view('pages/home',compact('articlesHeader','articlesHeader2',
     'art_cat_1','art_cat_2','art_cat_3','art_cat_4','art_cat_5','art_cat_6',
-    'articles_vedette','new_articles','comments'));
+    'articles_vedette','new_articles','comments','display_cat'));
 });
 
 Route::name("product-list")->get('/product-list', [ArticleController::class, 'listArticles']);
@@ -101,24 +111,6 @@ Route::name("comment.add")->any('/comment/add',  [CommentController::class, 'add
 Route::name("test")->get('/test', function(Request $request){
     return view('test');
 });
-Route::name("test.post")->post('/test', function(Request $request){
-    $file = $request->file('file');
-    $url_file="";
-    
-    if($file){
-            $name = $file->getClientOriginalName();
-            $url_file=Storage::disk('local')->put('images', $file);
-    }
-    
-
-    //Storage::disk('public')->delete('img/1.jpg');
-
-    $url_file=$url_file;
-    return view('test',compact('url_file'));
-});
-
-
-
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

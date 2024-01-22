@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminCategoriController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminPanierController;
@@ -8,9 +9,7 @@ use App\Http\Controllers\AdminArticleController;
 
 Route::middleware(['auth','admin'])->group(function () {
 
-    Route::get('/admin', function () {
-        return view('admin.profile');
-    })->name('admin');
+    Route::get('/admin',[AdminController::class, 'profil'])->name('admin');
 
     /* start categori route*/
     Route::get('/admin/categoris',[AdminCategoriController::class, 'list'])->name('admin.categoris');
@@ -46,6 +45,7 @@ Route::middleware(['auth','admin'])->group(function () {
      Route::post('/admin/article/add',[AdminArticleController::class, 'add'])->name('admin.article.add');
      Route::get('/admin/articles',[AdminArticleController::class, 'list'])->name('admin.articles');
      Route::get('/admin/article/{id}',[AdminArticleController::class, 'one'])->name('admin.article');
+     Route::delete('/admin/article',[AdminArticleController::class, 'delete'])->name('admin.article.delete');
      Route::put('/admin/article',[AdminArticleController::class, 'update'])->name('admin.article.update');
      Route::post('/admin/article/image',[AdminArticleController::class, 'addImage'])->name('admin.article.add.image');
      Route::put('/admin/article/image',[AdminArticleController::class, 'updateImage'])->name('admin.article.update.image');
