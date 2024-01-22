@@ -40,6 +40,38 @@ class AdminArticleController extends Controller
         $categoris=Categori::All();
         return view('admin.article.one',compact('article','categoris','message'));
     }
+    public function addForm(Request $request)
+	{
+
+        $categoris=Categori::All();
+        return view('admin.article.add',compact('categoris'));
+    }
+    public function add(Request $request)
+	{
+        $message=[
+            'message'=>"Plan ajouter",
+            "error"=> false
+           ];
+        $article=new Article;
+        //information de base
+        $article->name=$request->name;
+        $article->description=$request->description;
+        $article->prix=$request->prix;
+        $article->categori_id=$request->categori_id;
+        $article->save();
+        $created_at=date('Y-m-d H:i:s');
+        //image
+        $img = $request->file('image');
+        if($img){
+            //enregistrer le fichier
+            $url_file=Storage::disk('local')->put('images', $file);
+            //modifier l'image
+            $image->url=$url_file;
+            $image->save();
+        }
+        $categoris=Categori::All();
+        return view('admin.article.add',compact('article','categoris','message'));
+    }
     
     public function updateImage(Request $request)
 	{

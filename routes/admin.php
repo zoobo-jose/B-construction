@@ -42,6 +42,8 @@ Route::middleware(['auth','admin'])->group(function () {
      /* end paniers route*/
 
      /* start article route*/
+     Route::get('/admin/article/add',[AdminArticleController::class, 'addForm'])->name('admin.article.add.form');
+     Route::post('/admin/article/add',[AdminArticleController::class, 'add'])->name('admin.article.add');
      Route::get('/admin/articles',[AdminArticleController::class, 'list'])->name('admin.articles');
      Route::get('/admin/article/{id}',[AdminArticleController::class, 'one'])->name('admin.article');
      Route::put('/admin/article',[AdminArticleController::class, 'update'])->name('admin.article.update');
