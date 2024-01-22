@@ -18,7 +18,7 @@ class PdfSeeder extends Seeder
             for($i=1;$i<=2;$i++){
                  array_push( $data, [ 
                 'description'=>"description du pdf ".$i,
-                "url"=>"/pdf/pdf".$i.".png",
+                "url"=>"/pdf/pdf".$i.".pdf",
                 "article_id"=>$article_id
                 ]);
             }

@@ -103,11 +103,17 @@ Route::name("test")->get('/test', function(Request $request){
 });
 Route::name("test.post")->post('/test', function(Request $request){
     $file = $request->file('file');
+    $url_file="";
+    
     if($file){
-        $name = $file->getClientOriginalName();
-        dd(Storage::disk('local')->put('files/img', $file));
+            $name = $file->getClientOriginalName();
+            $url_file=Storage::disk('local')->put('images', $file);
     }
-    $url_file=Storage::download('test.webp');
+    
+
+    //Storage::disk('public')->delete('img/1.jpg');
+
+    $url_file=$url_file;
     return view('test',compact('url_file'));
 });
 

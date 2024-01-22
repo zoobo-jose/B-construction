@@ -1,4 +1,4 @@
-@extends('admin/layout/base',['title'=>'admin-categori'])
+@extends('admin/layout/base',['title'=>'admin-client'])
 
 @section('content')
 

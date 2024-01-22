@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AdminCategoriController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminPanierController;
+use App\Http\Controllers\AdminArticleController;
 
 Route::middleware(['auth','admin'])->group(function () {
 
@@ -39,4 +40,16 @@ Route::middleware(['auth','admin'])->group(function () {
      /* start panier route*/
      Route::get('/admin/paniers',[AdminPanierController::class, 'list'])->name('admin.paniers');
      /* end paniers route*/
+
+     /* start article route*/
+     Route::get('/admin/articles',[AdminArticleController::class, 'list'])->name('admin.articles');
+     Route::get('/admin/article/{id}',[AdminArticleController::class, 'one'])->name('admin.article');
+     Route::put('/admin/article',[AdminArticleController::class, 'update'])->name('admin.article.update');
+     Route::post('/admin/article/image',[AdminArticleController::class, 'addImage'])->name('admin.article.add.image');
+     Route::put('/admin/article/image',[AdminArticleController::class, 'updateImage'])->name('admin.article.update.image');
+     Route::delete('/admin/article/image',[AdminArticleController::class, 'deleteImage'])->name('admin.article.delete.image');
+     Route::post('/admin/article/pdf',[AdminArticleController::class, 'addPdf'])->name('admin.article.add.pdf');
+     Route::put('/admin/article/pdf',[AdminArticleController::class, 'updatePdf'])->name('admin.article.update.pdf');
+     Route::delete('/admin/article/pdf',[AdminArticleController::class, 'deletePdf'])->name('admin.article.delete.pdf');
+     /* end article route*/
 });

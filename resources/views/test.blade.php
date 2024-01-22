@@ -12,7 +12,11 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <!-- Styles -->
-       
+       <style>
+        img{
+            width:500px;
+        }
+       </style>
     </head>
     <body class="antialiased" >
        <div>
@@ -31,5 +35,9 @@
             confirm
         </button>
         </form>
+        @if(isset($url_file))
+        url= {{$url_file}}
+        <img src="{{asset($url_file)}}" alt="">
+        @endif
     </body>
 </html>

@@ -11279,3 +11279,36 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+.parent-div-img{
+  display:flex;
+  flex-wrap:wrap;
+  align-items: start;
+  gap:20px;
+}
+.div-img{
+  width: 30%;
+  border: solid 1px black;
+  padding:10px;
+  border-radius: 5px;
+}
+@media (width<=900px) {
+  .div-img{
+    width: 48%;
+  }
+}
+@media (width<=700px) {
+  .div-img{
+    width: 100%;
+  }
+}
+.div-img img{
+  width:100%;
+  object-fit: contain;
+  margin-bottom: 10px;
+
+}
+.div-img button{
+  margin-top: 10px;
+
+}

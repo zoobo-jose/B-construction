@@ -1,22 +1,22 @@
-@extends('admin/layout/base',['title'=>'admin-categori'])
+@extends('admin/layout/base',['title'=>'admin-plans'])
 
 @section('content')
 
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Ventes </h1>
+    <h1 class="h3 mb-2 text-gray-800">Vente </h1>
     <p class="mb-4">
-        Ce tableau presente la liste des Ventes
+        Ce tableau presente la liste des ventes
     </p>
-    <div >
-        <span class="text-dark">Gain :</span>
-        <span class="text-info" > {{$total_amount}} XAF</span>
-    </div>
+    <span>
+        <span class="text-dark"> Gain :</span>
+        <span  class="text-info">{{$total_amount}} XAF</span>
+    </span>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Ventes ({{count($paniers)}})</h6>
+            <h6 class="m-0 font-weight-bold text-primary">ventes ({{count($paniers)}})</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -24,19 +24,19 @@
                     <thead class="text-white bg-dark">
                         <tr>
                             <th>N°</th>
-                            <th>Client</th>
-                            <th>client email</th>
+                            <th>nom client</th>
+                            <th>email client</th>
                             <th>plan</th>
-                            <th>prix</th>
+                            <th>prix (XAF)</th>
                         </tr>
                     </thead>
                     <tfoot class="text-white bg-dark">
                         <tr>
                             <th>N°</th>
-                            <th>Client</th>
-                            <th>client email</th>
+                            <th>nom client</th>
+                            <th>email client</th>
                             <th>plan</th>
-                            <th>prix</th>
+                            <th>prix (XAF)</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -47,6 +47,7 @@
                             <th>{{$pan->user->email}}</th>
                             <th>{{$pan->article->name}}</th>
                             <th>{{$pan->article->prix}}</th>
+                          
                         </tr>
                         @endforeach
                        

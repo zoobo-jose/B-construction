@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\Pdf;
 use App\Models\Categori;
 use App\Models\Comment;
+use App\Models\Panier;
 
 class Article extends Model
 {
@@ -37,6 +38,9 @@ class Article extends Model
    {
        return $this->hasMany(Comment::class);
    }
-   
+   public function ventes()
+   {
+       return $this->hasMany(Panier::class)->where('sold',true);
+   }
 
 }

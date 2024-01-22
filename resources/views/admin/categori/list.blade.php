@@ -48,7 +48,7 @@
                                 <form class="user" method="POST" action="{{ route('admin.categori.remove',['id'=>$cat->id]) }}">
                                     @csrf
                                     @method('delete')
-                                    <button class="btn bg-gradient-primary text-gray-100">
+                                    <button class="btn bg-gradient-danger text-gray-100">
                                         supprimer
                                     </button>
                                 </form>

@@ -76,7 +76,7 @@
                     <span>Clients</span></a>
             </li>
           
-            <li class="nav-item">
+            <li class="{{concat_chain_on_condition('nav-item ','active', Route::is('admin.articles'))}}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticles"
                     aria-expanded="true" aria-controls="collapseArticles">
                     <i class="fas fa-fw fa-cog"></i>
@@ -84,7 +84,7 @@
                 </a>
                 <div id="collapseArticles" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">voir la liste</a>
+                        <a class="collapse-item" href="{{route('admin.articles')}}">voir la liste</a>
                         <a class="collapse-item" href="cards.html">Creer</a>
                     </div>
                 </div>
